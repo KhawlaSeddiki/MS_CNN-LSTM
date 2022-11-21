@@ -36,8 +36,7 @@ def split_dataset(data):
     y_test = np_utils.to_categorical(test_x[:, 0])
     return train, y_train, test, y_test
 
-red_lr = keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=30, verbose=1, min_lr=0.000000001)
-earlyStop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=60, verbose=1, mode='auto', restore_best_weights=True)
+
 train, y_train, test, y_test = split_dataset(df)
 nb_neurons = 30
 my_filters = 32
@@ -45,6 +44,8 @@ my_kernel_size = 21
 
 ##### LSTM model
 def LSTM_model():
+    red_lr = keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=30, verbose=1, min_lr=0.000000001)
+    earlyStop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=60, verbose=1, mode='auto', restore_best_weights=True)
     model = Sequential()
     model.add(LSTM(nb_neurons, activation='tanh', input_shape=(train.shape[1], train.shape[2]))) # ,
     model.add(Dropout(0.5))
@@ -63,6 +64,8 @@ def LSTM_model():
 
 ##### CNN-LSTM model
 def CNNLSTM_model():
+    red_lr = keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=30, verbose=1, min_lr=0.000000001)
+    earlyStop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=60, verbose=1, mode='auto', restore_best_weights=True)
     model = Sequential()
     model.add(Conv1D(filters=my_filters, kernel_size=my_kernel_size, padding="same", activation='relu', input_shape=(train.shape[1], train.shape[2])))
     model.add(BatchNormalization())
