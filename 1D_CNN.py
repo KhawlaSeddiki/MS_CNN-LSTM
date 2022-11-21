@@ -57,7 +57,7 @@ def build_model():
     accuracy = accuracy * 100.0
     print('Accuracy of Model: ', accuracy)
     # save the model
-    # model.save("trained_model")
+    # model.save("1DCNN_model.h5")
     return model
 
 def check_GPUs():
