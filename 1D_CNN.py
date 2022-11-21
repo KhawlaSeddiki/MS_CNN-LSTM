@@ -22,10 +22,10 @@ def split_dataset(data):
     train_x = np.array(df[:split])
     test_x = np.array(df[split:])
     # reshape train and test
-    train_sp = minmax_scale(train_x[:, 1:], axis=0, feature_range=(0, 5))
+    train_sp = minmax_scale(train_x[:, 1:], axis=0, feature_range=(0, 1))
     train = np.reshape(train_sp, (train_sp.shape[0], train_sp.shape[1], 1))
     y_train = np_utils.to_categorical(train_x[:, 0])
-    test_sp = minmax_scale(test_x[:, 1:], axis=0, feature_range=(0, 5))
+    test_sp = minmax_scale(test_x[:, 1:], axis=0, feature_range=(0, 1))
     test = np.reshape(test_sp, (test_sp.shape[0], test_sp.shape[1], 1))
     y_test = np_utils.to_categorical(test_x[:, 0])
     return train, y_train, test, y_test
