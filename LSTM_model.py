@@ -13,7 +13,7 @@ from sklearn.preprocessing import minmax_scale
 
 
 # inport data
-path = 'non_emb/hepatic_RT_10sec_'
+path = 'path'
 my_files = sorted(glob.glob(path + "*.csv"))
 data = list()
 for f in my_files:
