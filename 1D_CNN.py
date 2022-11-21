@@ -31,14 +31,14 @@ def split_dataset(data):
     return train, y_train, test, y_test
 
 
-red_lr = keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=30, verbose=1, min_lr=0.000000001)
-earlyStop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=60, verbose=1, mode='auto', restore_best_weights=True)
 train, y_train, test, y_test = split_dataset(df)
 my_filters = 32
 my_kernel_size = 21
 
 ##### 1D CNN model
 def build_model():
+    red_lr = keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=30, verbose=1, min_lr=0.000000001)
+    earlyStop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=60, verbose=1, mode='auto', restore_best_weights=True)
     model = Sequential([
         Conv1D(filters=my_filters, kernel_size=my_kernel_size, strides=1, padding='same', activation='relu',
                kernel_initializer=keras.initializers.he_normal(), input_shape= (train.shape[1], 1)),
