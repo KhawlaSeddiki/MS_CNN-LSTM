@@ -7,7 +7,7 @@ from tensorflow.keras.models import Model
 from keras.models import Sequential, model_from_json, load_model
 from sklearn.preprocessing import MinMaxScaler
 
-# inport data
+# import data
 path = 'path'
 my_files = sorted(glob.glob(path + "*.csv"))
 data = list()
@@ -15,7 +15,6 @@ for f in my_files:
     df = pd.read_csv(f)
     values = df.values
     data.append(values)
-    print(f)
 
 # import CNN model
 base_model = load_model('1DCNN_model.h5')
